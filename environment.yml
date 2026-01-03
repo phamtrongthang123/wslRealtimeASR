@@ -1,0 +1,12 @@
+name: wslrealtimeasr
+channels:
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - cmake
+  - ninja
+  - git
+  - pkg-config
+  - cuda-toolkit=12.4
+  - pip

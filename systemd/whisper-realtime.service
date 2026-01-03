@@ -1,0 +1,15 @@
+[Unit]
+Description=Realtime Whisper.cpp Dictation Server
+After=network.target
+
+[Service]
+Type=simple
+User=ptthang
+WorkingDirectory=/home/ptthang/wslRealtimeASR
+Environment=LD_LIBRARY_PATH=/home/ptthang/miniconda3/envs/wslrealtimeasr/lib:/home/ptthang/miniconda3/envs/wslrealtimeasr/targets/x86_64-linux/lib:/home/ptthang/wslRealtimeASR/build/whispercpp_build/src:/home/ptthang/wslRealtimeASR/build/whispercpp_build/ggml/src:/home/ptthang/wslRealtimeASR/build/whispercpp_build/ggml/src/ggml-cuda
+ExecStart=/home/ptthang/wslRealtimeASR/build/realtime_server --model /home/ptthang/wslRealtimeASR/models/ggml-small.en.bin --public /home/ptthang/wslRealtimeASR/frontend --host 0.0.0.0 --port 3004
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

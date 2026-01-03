@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Realtime Dictation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <p class="eyebrow">Realtime dictation</p>
+        <h1>Talk. Think. Ship words.</h1>
+        <p class="subtitle">
+          Stream speech from your mic and watch the transcript build in near real time.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="status-row">
+          <div>
+            <p class="label">Status</p>
+            <p id="status" class="status">Idle</p>
+          </div>
+          <div>
+            <p class="label">Session</p>
+            <p id="session" class="session">Not started</p>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="btn primary">Start recording</button>
+          <button id="stopBtn" class="btn ghost" disabled>Stop</button>
+          <div class="meter">
+            <span class="meter-label">Input</span>
+            <div class="meter-track">
+              <div id="meterBar" class="meter-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="note" id="note">
+          Mic access is required. If the button does nothing, check browser permissions.
+        </div>
+      </section>
+
+      <section class="panel transcript-panel">
+        <div class="panel-header">
+          <h2>Live transcript</h2>
+          <button id="clearBtn" class="btn small">Clear</button>
+        </div>
+        <div id="transcript" class="transcript">Waiting for audio…</div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
