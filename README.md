@@ -73,3 +73,4 @@ Common overrides:
 
 - The frontend sends mono 16 kHz PCM chunks. If you use a custom client, keep the same format.
 - For CPU-only builds, rerun the build with `-DGGML_CUDA=OFF`.
+- Browsers only allow mic access on HTTPS or `http://localhost`. If you open the UI via a LAN IP, use HTTPS (reverse proxy) or an SSH tunnel.

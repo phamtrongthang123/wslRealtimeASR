@@ -35,6 +35,24 @@ function showNote(text) {
   noteEl.textContent = text;
 }
 
+function ensureMediaSupport() {
+  const isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  const hasUserMedia = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  if (hasUserMedia && (window.isSecureContext || isLocalhost)) {
+    return true;
+  }
+
+  setStatus("Mic unavailable");
+  startBtn.disabled = true;
+  stopBtn.disabled = true;
+  if (!window.isSecureContext && !isLocalhost) {
+    showNote("Microphone access requires HTTPS or localhost. Open this page via https:// or http://localhost:3004.");
+  } else {
+    showNote("Your browser does not expose getUserMedia. Use a modern browser.");
+  }
+  return false;
+}
+
 async function createSession() {
   const resp = await fetch("/session", { method: "POST" });
   const data = await resp.json();
@@ -120,6 +138,7 @@ function enqueueChunk(buffer) {
 }
 
 async function startRecording() {
+  if (!ensureMediaSupport()) return;
   if (running) return;
   running = true;
   startBtn.disabled = true;
@@ -216,3 +235,5 @@ stopBtn.addEventListener("click", stopRecording);
 clearBtn.addEventListener("click", () => {
   setTranscript("");
 });
+
+ensureMediaSupport();
